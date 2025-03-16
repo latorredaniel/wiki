@@ -1,0 +1,12 @@
+services:
+  ms_weather:
+    container_name: ms_weather
+    build:
+      context: D:/_POC/Microservice/PRJ.Anthus.WebAPI  # 📌 Ruta donde está el Dockerfile
+      dockerfile: Dockerfile
+    ports:
+      - "5000:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      DOTNET_RUNNING_IN_CONTAINER: "true"  # 🔹 Evita errores dentro del contenedor
+    restart: unless-stopped

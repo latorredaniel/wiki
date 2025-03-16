@@ -1,0 +1,71 @@
+services:
+  comparaseguro:
+    image: wordpress:6.3
+    ports:
+      - "8082:80"
+    environment:
+      WORDPRESS_DB_HOST: db-comparaseguro
+      WORDPRESS_DB_USER: dlatorre
+      WORDPRESS_DB_PASSWORD: 10813036
+      WORDPRESS_DB_NAME: dbcomparaseguro
+    volumes:
+      - ./comparaseguro/wp-content:/var/www/html/wp-content
+
+  sitelegal:
+    image: wordpress:6.3
+    ports:
+      - "8083:80"
+    environment:
+      WORDPRESS_DB_HOST: db-sitelegal
+      WORDPRESS_DB_USER: dlatorre
+      WORDPRESS_DB_PASSWORD: 10813036
+      WORDPRESS_DB_NAME: dbsitelegal
+    volumes:
+      - ./sitelegal/wp-content:/var/www/html/wp-content
+
+  plasticoslatorre:
+    image: wordpress:6.3
+    ports:
+      - "8084:80"
+    environment:
+      WORDPRESS_DB_HOST: db-plasticoslatorre
+      WORDPRESS_DB_USER: dlatorre
+      WORDPRESS_DB_PASSWORD: 10813036
+      WORDPRESS_DB_NAME: dbplasticoslatorre
+    volumes:
+      - ./plasticoslatorre/wp-content:/var/www/html/wp-content
+
+  db-comparaseguro:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: 10813036
+      MYSQL_DATABASE: dbcomparaseguro
+      MYSQL_USER: dlatorre
+      MYSQL_PASSWORD: 10813036
+    volumes:
+      - db-comparaseguro-data:/var/lib/mysql
+
+  db-sitelegal:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: 10813036
+      MYSQL_DATABASE: dbsitelegal
+      MYSQL_USER: dlatorre
+      MYSQL_PASSWORD: 10813036
+    volumes:
+      - db-sitelegal-data:/var/lib/mysql
+
+  db-plasticoslatorre:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: 10813036
+      MYSQL_DATABASE: dbplasticoslatorre
+      MYSQL_USER: dlatorre
+      MYSQL_PASSWORD: 10813036
+    volumes:
+      - db-plasticoslatorre-data:/var/lib/mysql
+
+volumes:
+  db-comparaseguro-data:
+  db-sitelegal-data:
+  db-plasticoslatorre-data:
